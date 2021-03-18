@@ -11,6 +11,7 @@ package assignment.OOP;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -56,19 +57,18 @@ public class FileDecoder {
 	
 	
 
-	public String[][] decodeCSV(int elements, int inputs) {
-		String[][] out = new String[elements][inputs];
+	public ArrayList<String[]> decodeCSV() {
+		//initialise an array list to add elements to
+		ArrayList<String[]> out = new ArrayList<String[]>();
 		
-		int i = 0;
 		
 		//if we don't make a new scanner having reached the end of file in another method would stop this method working
 		makeNewScanner(true);
 		
 		while(scanner.hasNextLine())
 		{
-			out[i] = scanner.nextLine().split(",");
-			System.out.println(Arrays.toString(out[i]));
-			i++;
+			//adds each line of  csv file as an array
+			out.add(scanner.nextLine().split(",")) ;
 		}
 		
 		return out;

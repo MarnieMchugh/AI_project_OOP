@@ -1,5 +1,6 @@
 package assignment.OOP;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Control {
@@ -8,9 +9,12 @@ public class Control {
 		// TODO Auto-generated method stub
 		FileDecoder file = new FileDecoder("C:\\Users\\mapdg\\Downloads\\MLdata.csv");
 		
-		String[][] tester = file.decodeCSV(file.countlns(), 6);
+		ArrayList<String[]> tester = file.decodeCSV();
 		
-		System.out.println(Arrays.toString(tester[5]));
+		Trainer thing = new Trainer(tester);
+		System.out.println(tester.get(1).length + 4);
+		System.out.println(thing.train(0.70));
+		System.out.println(tester.size());
 	}
 
 }
