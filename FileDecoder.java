@@ -43,13 +43,12 @@ public class FileDecoder {
 		//i will 
 		int numberOfDataElements = 0;
 		
-		//counts the total number of lines after preamble in CVS
+		//counts the total number of lines after preamble lines in CVS
 		do {
 			numberOfDataElements++;
 			
 			//needed to stop an infinite loop
 			scanner.nextLine();
-			System.out.println(numberOfDataElements);
 		}
 		while(scanner.hasNextLine());
 		return numberOfDataElements;
@@ -61,7 +60,9 @@ public class FileDecoder {
 		//initialise an array list to add elements to
 		ArrayList<String[]> out = new ArrayList<String[]>();
 		
-		
+		int i;
+		int count = 0;
+		int ycount = 0;
 		//if we don't make a new scanner having reached the end of file in another method would stop this method working
 		makeNewScanner(true);
 		
@@ -71,16 +72,26 @@ public class FileDecoder {
 			out.add(scanner.nextLine().split(",")) ;
 		}
 		
+		
+		//makes a new scanner only using 
+		makeNewScanner(true);
+		
+		
 		return out;
 	}
 	
 	private void makeNewScanner(boolean forDataImplimentation)
 	{
+		/*
+		 * creates a new scanner then if forDataImplimentation is true skips 3 lines for preamble
+		 */
 		try {
+			//creates new scanner 
 			scanner = new Scanner(trainingData);
 
 			if(forDataImplimentation == true)
 			{
+				//skips the preamble
 				scanner.nextLine();
 				scanner.nextLine();
 				scanner.nextLine();
@@ -93,5 +104,23 @@ public class FileDecoder {
 		
 	}
 	
+	
+	public String toString()
+	{
+		//returns all of the data in the file as a string 
+		
+		String out = "";
+		
+		//makes new scanner to scan the file
+		makeNewScanner(true);
+		
+		//scans through the whole file and adds each line to the output 
+		while(scanner.hasNextLine())
+		{
+			out = out + scanner.nextLine() + "\n";
+		}
+		return out;
+	}
 
 }
+

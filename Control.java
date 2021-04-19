@@ -2,19 +2,27 @@ package assignment.OOP;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Hashtable;
 
 public class Control {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		FileDecoder file = new FileDecoder("C:\\Users\\mapdg\\Downloads\\MLdata.csv");
+		FileDecoder file = new FileDecoder("MLdata.csv");
+		
 		
 		ArrayList<String[]> tester = file.decodeCSV();
 		
 		Trainer thing = new Trainer(tester);
-		System.out.println(tester.get(1).length + 4);
-		System.out.println(thing.train(0.70));
-		System.out.println(tester.size());
+		
+		Hashtable<String,Float> weights = thing.train(0.7);
+		
+		Classifier test = new Classifier(weights);
+		
+		GUI frame = new GUI("Entreprenureship Classifier",tester, test, thing); 
+		
+		
+		
 	}
 
 }
