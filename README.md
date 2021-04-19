@@ -53,4 +53,7 @@ A slider for percentages from 0 to 100 (defaulted at 70) so that the user can re
 A "retrain" button that retrains the model using the percentage given in the slider 
 Labels for every element listed above 
 
+If I had More Time: 
+If I had More Time I would find a way to make the probability that the algorithm returns more human readable, most people aren't going to understand how high 30% is using this algorithm and will think it's very uncertian. 
+I would also consider adding better GUI elements, right now while it's not ugly it's not particularly pretty eaither and that would be nice to add. 
 
