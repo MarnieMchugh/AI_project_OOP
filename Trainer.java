@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Set;//adds the elements for the user sex input
 
+/*
+ * A class to train a Classifier using provided data and the naive Bayes algorithm 
+ * Author: Mark McHugh
+ */
+
+
 public class Trainer {
 	private ArrayList<String[]> data;
 	Hashtable<String, Float> weights = new Hashtable<String, Float>();
@@ -15,6 +21,15 @@ public class Trainer {
 	
 	public Hashtable<String,Float> train(double percent)
 	{
+		/*
+		 * Trains a classifier by counting the total number of each input element and 
+		 * the amount associated with them being related to an entrepreneur or not 
+		 * (within a given percentage of total data). 
+		 * The trainer then compares the amount of each element associated with being
+		 * an entrepreneur or not and assigns them a statistical likelihood in weights
+		 * Author: Mark McHugh
+		 */
+		
 		int i;
 		int c;
 		
@@ -79,24 +94,26 @@ public class Trainer {
 		//creates a set of keys that I can iterate through to assign conditional weights
 		Set<String> keys = weights.keySet();
 		
-		//itterates through the Key set to assign conditional weights
+		//iterates through the Key set to assign conditional weights
         for(String key: keys){
         	
-        	
+        	//if the element is not the final element that confirms entrepreneur status
             if(!(key.equals(data.get(1).length-1 + "NoNo")) && !(key.equals(data.get(1).length-1 + "YesYes")))
             {
             	if(key.substring(1,4).equals("Yes"))
             	{
+            		//if the weights are associated with an entrepreneur the weights are the total number of the element devided by the total number of entrepreneurs
             		weights.put(key, weights.get(key)/yes_count);
             	}
             	else
             	{
-            		//
+            		//if the weights are associated with an non entrepreneur the weights are the total number of the element devided by the total number of non entrepreneurs
             		weights.put(key, weights.get(key)/no_count);
             	}
             }
             else
             {
+            	//puts the statistical likelihood of it being yes or being no based on total training data
             	weights.put(key, weights.get(key)/trainingData);
             }
         }
